@@ -7,13 +7,12 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(null);
   const [rolefilters, setRoleFilters] = useState("ios");
-  const [numberofemp,setNumberofemp] = useState(null);
-  const [experience, setExperience] = useState(null);
-  const [remote, setRemote] = useState(null);
-  const [teckstack, setTeckstack] = useState(null);
-  const [minisalary, setMinisalary] = useState(null);
-  const [companyname, setCompanyname] = useState(null);
-  
+
+  const [experience, setExperience] = useState(8);
+  const [remote, setRemote] = useState(undefined);
+  const [teckstack, setTeckstack] = useState(undefined);
+  const [minisalary, setMinisalary] = useState(undefined);
+  const [companyname, setCompanyname] = useState(undefined);
 
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -67,29 +66,34 @@ function App() {
     }
   };
 
-  return ( 
-    
+  return (
     <div className="grid grid-cols-3 cursor-pointer">
-   {joblisting.filter((item) => {
-  if (
-    (rolefilters === null || item.jobRole === rolefilters) ||
-    (numberofemp === null || item.numberOfEmployees === numberofemp) ||
-    (experience === null || item.experience === experience) ||
-    (remote === null || item.isRemote === remote) ||
-    (teckstack === null || item.technologyStack === teckstack) ||
-    (minisalary === null || item.minSalary >= minisalary) ||
-    (companyname === null || item.companyName === companyname)
-  ) {
-    return true; // Return true if any filter matches
-  }
-  return false;
-}).map((item, index) => (
-  <div className="border border-2 px-10 py-40  hover:bg-sky-700" key={index}>
-    <div>{item["jdUid"]}</div>
-    <div>{item["jobRole"]}</div>
-    {/* Additional fields to display */}
-  </div>
-))}
+      {joblisting
+        .filter((item) => {
+          if (rolefilters == undefined || item["jobRole"] == rolefilters) {
+            return true;
+          }
+          return false;
+        })
+        .filter((item) => {
+          console.log(experience,item.minExp,item.maxExp,( item["minExp"] >= experience || item["maxExp"]<= experience))
+          if (experience == undefined ||( item["minExp"] <= experience && item["maxExp"]>= experience)) {
+            return true;
+          }
+          return false;
+        })
+        .map((item, index) => (
+          <div
+            className="border border-2 px-10 py-40  hover:bg-sky-700"
+            key={index}
+          >
+            <div>{item["jdUid"]}</div>
+            <div>{item["jobRole"]}</div>
+            <div>{item["minExp"]}</div>
+            <div>{item["maxExp"]}</div>
+            {/* Additional fields to display */}
+          </div>
+        ))}
 
       {loading && <div>Loading...</div>}
     </div>
