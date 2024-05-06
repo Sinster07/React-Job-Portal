@@ -91,15 +91,22 @@ function App() {
   return (
     <>
       <div className="flex space-x-4">
-        <select
+        <select 
+          
           value={rolefilters}
           onChange={handleRoleChange}
           className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
           <option value=""> Roles </option>
-          <option value="role1">Role 1</option>
-          <option value="role2">Role 2</option>
-          <option value="role3">Role 3</option>
+          <option value="frontend">Frontend</option>
+          <option value="backened">Backend</option>
+          <option value="fullstack">FullStack</option>
+          <option value="ios">IOS</option>
+          <option value="flutter">Flutter</option>
+          <option value="reactnative">React Native</option>
+          <option value="android">Andriod</option>
+          <option value="techlead">TechLead</option>
+          <option value="devops">Dev-ops</option>
         </select>
         <select
           value={experience}
@@ -121,31 +128,30 @@ function App() {
           <option value="yes">Hybrid</option>
           <option value="no">InOffice</option>
         </select>
-        
-          <select
-            value={minisalary}
-            onChange={handleMiniSalaryChange}
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          >
-            <option value="">Minimum Base Pay Salary</option>
-            <option value="stack1">0L</option>
-            <option value="stack2">10L</option>
-            <option value="stack3">20L</option>
-            <option value="stack3">30L</option>
-            <option value="stack3">40L</option>
-            <option value="stack3">50L</option>
-            <option value="stack3">60L</option>
-            <option value="stack3">70L</option>
-          </select>
-          <input
-            type="text"
-            value={companyname}
-            onChange={handleCompanyName}
-            placeholder="Enter the name of the Company"
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-        </div>
 
+        <select
+          value={minisalary}
+          onChange={handleMiniSalaryChange}
+          className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        >
+          <option value="">Minimum Base Pay Salary</option>
+          <option value="stack1">0L</option>
+          <option value="stack2">10L</option>
+          <option value="stack3">20L</option>
+          <option value="stack3">30L</option>
+          <option value="stack3">40L</option>
+          <option value="stack3">50L</option>
+          <option value="stack3">60L</option>
+          <option value="stack3">70L</option>
+        </select>
+        <input
+          type="text"
+          value={companyname}
+          onChange={handleCompanyName}
+          placeholder="Enter the name of the Company"
+          className="flex-1 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
 
       <div className="grid grid-cols-3  mt-20 ">
         {joblisting
@@ -171,7 +177,8 @@ function App() {
             return false;
           })
           .map((item, index) => (
-          <Card key={index + 1} data={item} /> 
+            <Card key={index + 1} data={item} 
+            />
           ))}
 
         {loading && <div>Loading...</div>}

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 
-const Card = ({ data }) => {
+const Card = ({ data ,  }) => {
   const [showFullContent, setShowFullContent] = useState(false);
+;
 
   return (
-    <div className="border border-2 px-5 py-10 m-5 rounded-md">
+    <div className="border border-2 px-5 py-10 m-5 rounded-xl shadow-lg">
       <div className="flex">
         <img
           src={data["logoUrl"]}
